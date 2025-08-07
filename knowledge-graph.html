@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Knowledge Graph</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .graph { width: 100%; height: 600px; border: 1px solid #ccc; }
+        .node { cursor: pointer; }
+        .node.document { fill: #69b3a2; }
+        .node.concept { fill: #ff6b6b; }
+        .link { stroke: #999; stroke-opacity: 0.6; }
+        .tooltip { position: absolute; background: rgba(0,0,0,0.8); color: white; padding: 5px; border-radius: 3px; pointer-events: none; }
+    </style>
+</head>
+<body>
+    <h1>🌐 Knowledge Graph</h1>
+    <div id="graph" class="graph"></div>
+    <div id="tooltip" class="tooltip" style="display: none;"></div>
+    
+    <script>
+        const data = {
+  "nodes": [
+    {
+      "id": "00306eb1-dd55-48ef-8b47-d0f6fa9bf7f7",
+      "name": "Untitled 10",
+      "type": "document"
+    },
+    {
+      "id": "0030eb35-b977-4fe2-b87c-8bdba564106b",
+      "name": "Untitled 10",
+      "type": "document"
+    },
+    {
+      "id": "0031753c-d6d6-4a7d-90dc-6e3076cb5721",
+      "name": "Untitled 10",
+      "type": "document"
+    },
+    {
+      "id": "0092c664-f210-4b19-bb49-92406dc79794",
+      "name": "mmVAgmAJw86X.png",
+      "type": "document"
+    },
+    {
+      "id": "0098ab49-3f49-4d8c-a7c0-4d51fd73c2d4",
+      "name": "tyJuLTzgrI24.png",
+      "type": "document"
+    },
+    {
+      "id": "0353a672-0fe1-4dae-8a1b-7fd3c96f0ea4",
+      "name": "five_rules_engagement.png",
+      "type": "document"
+    },
+    {
+      "id": "0365a6d0-101b-44cc-8676-79ba6890e6f5",
+      "name": "ceikxkB386vn.jpg",
+      "type": "document"
+    },
+    {
+      "id": "04153431-73e4-4dcc-871b-01367492b5c3",
+      "name": "UFNJxs7tRyPi.jpg",
+      "type": "document"
+    },
+    {
+      "id": "057f20df-0c5c-4553-abed-81f9a9de3c5f",
+      "name": "complete_workflow.png",
+      "type": "document"
+    },
+    {
+      "id": "05aca94c-7ef7-488b-b476-d85dc1bf5c87",
+      "name": "ooyHJxwumUrk.jpg",
+      "type": "document"
+    },
+    {
+      "id": "05c4f990-e74f-432c-91cd-04f894772937",
+      "name": "YEpKdWD26STl.jpg",
+      "type": "document"
+    },
+    {
+      "id": "061680a1-6091-4f25-a6f7-f2598cb08f88",
+      "name": "portfolio_timeline.png",
+      "type": "document"
+    },
+    {
+      "id": "0672a19e-8a1a-4d1b-b571-a68cf261c840",
+      "name": "nzNLBZgoTEVW.png",
+      "type": "document"
+    },
+    {
+      "id": "0964f763-5a9b-4be5-8463-512c520a5efc",
+      "name": "tU1yOo1ychd5.png",
+      "type": "document"
+    },
+    {
+      "id": "098d7cb5-1d0c-4baa-b155-62b8b4f1f09e",
+      "name": "ai_help_corrected.png",
+      "type": "document"
+    },
+    {
+      "id": "09e4a0c8-fa7b-4773-833a-c6278c348989",
+      "name": "complete_workflow_corrected.png",
+      "type": "document"
+    },
+    {
+      "id": "0a2ddc70-e980-4206-9a47-7100e17ebdc0",
+      "name": "xdYuv17E32Ap.jpg",
+      "type": "document"
+    },
+    {
+      "id": "0a49d07e-5db4-46f6-a6f0-20b0dbaa1829",
+      "name": "9Ltd779MaYdG.png",
+      "type": "document"
+    },
+    {
+      "id": "0aeec7fe-c4d2-4a27-a4e7-4268ab511da9",
+      "name": "9PsYACMvmszx.jpg",
+      "type": "document"
+    },
+    {
+      "id": "0b305206-e631-4b6f-b8da-38d1fa628ec8",
+      "name": "ghl_mobile.png",
+      "type": "document"
+    },
+    {
+      "id": "0c57bf68-813b-497a-8efb-6d4a97c9bcdc",
+      "name": "a6DIx8NKETTC.jpg",
+      "type": "document"
+    },
+    {
+      "id": "concept_collective",
+      "name": "collective",
+      "type": "concept"
+    },
+    {
+      "id": "concept_business",
+      "name": "business",
+      "type": "concept"
+    },
+    {
+      "id": "concept_technology",
+      "name": "technology",
+      "type": "concept"
+    },
+    {
+      "id": "concept_ai",
+      "name": "ai",
+      "type": "concept"
+    },
+    {
+      "id": "concept_finance",
+      "name": "finance",
+      "type": "concept"
+    },
+    {
+      "id": "concept_strategy",
+      "name": "strategy",
+      "type": "concept"
+    }
+  ],
+  "links": [
+    {
+      "source": "00306eb1-dd55-48ef-8b47-d0f6fa9bf7f7",
+      "target": "0030eb35-b977-4fe2-b87c-8bdba564106b",
+      "strength": 0.8181818181818182,
+      "type": "similarity"
+    },
+    {
+      "source": "00306eb1-dd55-48ef-8b47-d0f6fa9bf7f7",
+      "target": "0031753c-d6d6-4a7d-90dc-6e3076cb5721",
+      "strength": 0.8181818181818182,
+      "type": "similarity"
+    },
+    {
+      "source": "0030eb35-b977-4fe2-b87c-8bdba564106b",
+      "target": "0031753c-d6d6-4a7d-90dc-6e3076cb5721",
+      "strength": 0.8181818181818182,
+      "type": "similarity"
+    },
+    {
+      "source": "0092c664-f210-4b19-bb49-92406dc79794",
+      "target": "0098ab49-3f49-4d8c-a7c0-4d51fd73c2d4",
+      "strength": 0.5,
+      "type": "similarity"
+    },
+    {
+      "source": "0092c664-f210-4b19-bb49-92406dc79794",
+      "target": "0353a672-0fe1-4dae-8a1b-7fd3c96f0ea4",
+      "strength": 0.5,
+      "type": "similarity"
+    },
+    {
+      "source": "0092c664-f210-4b19-bb49-92406dc79794",
+      "target": "0365a6d0-101b-44cc-8676-79ba6890e6f5",
+      "strength": 0.5,
+      "type": "similarity"
+    },
+    {
+      "source": "0092c664-f210-4b19-bb49-92406dc79794",
+      "target": "04153431-73e4-4dcc-871b-01367492b5c3",
+      "strength": 0.5,
+      "type": "similarity"
+    },
+    {
+      "source": "0092c664-f210-4b19-bb49-92406dc79794",
+      "target": "057f20df-0c5c-4553-abed-81f9a9de3c5f",
+      "strength": 0.5,
+      "type": "similarity"
+    },
+    {
+      "source": "0092c664-f210-4b19-bb49-92406dc79794",
+      "target": "05aca94c-7ef7-488b-b476-d85dc1bf5c87",
+      "strength": 0.5,
+      "type": "similarity"
+    },
+    {
+      "source": "0092c664-f210-4b19-bb49-92406dc79794",
+      "target": "05c4f990-e74f-432c-91cd-04f894772937",
+      "strength": 0.5,
+      "type": "similarity"
+    },
+    {
+      "source": "0092c664-f210-4b19-bb49-92406dc79794",
+      "target": "061680a1-6091-4f25-a6f7-f2598cb08f88",
+      "strength": 0.5,
+      "type": "similarity"
+    },
+    {
+      "source": "0092c664-f210-4b19-bb49-92406dc79794",
+      "target": "0672a19e-8a1a-4d1b-b571-a68cf261c840",
+      "strength": 0.5,
+      "type": "similarity"
+    },
+    {
+      "source": "0092c664-f210-4b19-bb49-92406dc79794",
+      "target": "0964f763-5a9b-4be5-8463-512c520a5efc",
+      "strength": 0.5,
+      "type": "similarity"
+    },
+    {
+      "source": "0092c664-f210-4b19-bb49-92406dc79794",
+      "target": "098d7cb5-1d0c-4baa-b155-62b8b4f1f09e",
+      "strength": 0.5,
+      "type": "similarity"
+    },
+    {
+      "source": "0092c664-f210-4b19-bb49-92406dc79794",
+      "target": "09e4a0c8-fa7b-4773-833a-c6278c348989",
+      "strength": 0.5,
+      "type": "similarity"
+    },
+    {
+      "source": "0092c664-f210-4b19-bb49-92406dc79794",
+      "target": "0a2ddc70-e980-4206-9a47-7100e17ebdc0",
+      "strength": 0.5,
+      "type": "similarity"
+    },
+    {
+      "source": "0092c664-f210-4b19-bb49-92406dc79794",
+      "target": "0a49d07e-5db4-46f6-a6f0-20b0dbaa1829",
+      "strength": 0.5,
+      "type": "similarity"
+    },
+    {
+      "source": "0092c664-f210-4b19-bb49-92406dc79794",
+      "target": "0aeec7fe-c4d2-4a27-a4e7-4268ab511da9",
+      "strength": 0.5,
+      "type": "similarity"
+    },
+    {
+      "source": "0092c664-f210-4b19-bb49-92406dc79794",
+      "target": "0b305206-e631-4b6f-b8da-38d1fa628ec8",
+      "strength": 0.5,
+      "type": "similarity"
+    },
+    {
+      "source": "0092c664-f210-4b19-bb49-92406dc79794",
+      "target": "0c57bf68-813b-497a-8efb-6d4a97c9bcdc",
+      "strength": 0.5,
+      "type": "similarity"
+    }
+  ]
+};
+        
+        const width = 1000;
+        const height = 600;
+        
+        const svg = d3.select("#graph")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+        
+        const simulation = d3.forceSimulation(data.nodes)
+            .force("link", d3.forceLink(data.links).id(d => d.id).distance(100))
+            .force("charge", d3.forceManyBody().strength(-300))
+            .force("center", d3.forceCenter(width / 2, height / 2));
+        
+        const link = svg.append("g")
+            .selectAll("line")
+            .data(data.links)
+            .enter().append("line")
+            .attr("class", "link")
+            .attr("stroke-width", d => Math.sqrt(d.strength * 10));
+        
+        const node = svg.append("g")
+            .selectAll("circle")
+            .data(data.nodes)
+            .enter().append("circle")
+            .attr("class", d => "node " + d.type)
+            .attr("r", d => d.type === 'concept' ? 8 : 5)
+            .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+        
+        const tooltip = d3.select("#tooltip");
+        
+        node.on("mouseover", function(event, d) {
+            tooltip.style("display", "block")
+                .html(d.name)
+                .style("left", (event.pageX + 10) + "px")
+                .style("top", (event.pageY - 10) + "px");
+        })
+        .on("mouseout", function() {
+            tooltip.style("display", "none");
+        });
+        
+        simulation.on("tick", () => {
+            link
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+            
+            node
+                .attr("cx", d => d.x)
+                .attr("cy", d => d.y);
+        });
+        
+        function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+        
+        function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
+        
+        function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+    </script>
+</body>
+</html>

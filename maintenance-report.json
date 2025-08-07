@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-08-07T21:48:53.777Z",
+  "health": {
+    "healthy": true,
+    "classes": 8,
+    "vectorized": 4,
+    "nonVectorized": 4
+  },
+  "dataQuality": {
+    "totalObjects": 200,
+    "issues": []
+  },
+  "optimizations": [
+    {
+      "type": "vectorization",
+      "description": "4 classes could benefit from vectorization",
+      "action": "Enable vectorization for semantic search capabilities",
+      "impact": "high"
+    },
+    {
+      "type": "cleanup",
+      "description": "5 empty classes found",
+      "action": "Consider removing unused classes to reduce schema complexity",
+      "impact": "low"
+    },
+    {
+      "type": "indexing",
+      "description": "Regular index optimization",
+      "action": "Weaviate automatically optimizes indexes, but consider query patterns",
+      "impact": "medium"
+    }
+  ]
+}
