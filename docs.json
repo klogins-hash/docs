@@ -66,6 +66,46 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Internal Docs",
+        "groups": [
+          {
+            "group": "Conversations",
+            "pages": [
+              "internal-docs/conversations/ghl-ai-research",
+              "internal-docs/conversations/hormozi-acquisition-offers",
+              "internal-docs/conversations/sandbox",
+              "internal-docs/conversations/mmvagmajw86x-png",
+              "internal-docs/conversations/tyjultzgri24-png",
+              "internal-docs/conversations/todo",
+              "internal-docs/conversations/comprehensive-guide",
+              "internal-docs/conversations/conversation-transcript",
+              "internal-docs/conversations/conversation-transcript"
+            ]
+          },
+          {
+            "group": "General",
+            "pages": [
+              "internal-docs/general/metaverse-platforms"
+            ]
+          },
+          {
+            "group": "Obsidian",
+            "pages": [
+              "internal-docs/obsidian/2025-05-13-customer-profile-creation",
+              "internal-docs/obsidian/2025-02-15-location-identification-request",
+              "internal-docs/obsidian/untitled-10",
+              "internal-docs/obsidian/2025-01-14-threadripper-3955wx-mining-profit",
+              "internal-docs/obsidian/2025-04-23-organization-type-comparison",
+              "internal-docs/obsidian/2025-05-27-elders-quorum-meeting-outline",
+              "internal-docs/obsidian/2025-06-10-lease-termination-options",
+              "internal-docs/obsidian/2025-05-28-eastern-movements-the-collective",
+              "internal-docs/obsidian/2025-04-30-collective-tech-market-research",
+              "internal-docs/obsidian/2025-05-17-yoolax-blinds-apple-homekit-setup"
+            ]
+          }
+        ]
       }
     ],
     "global": {
@@ -107,15 +147,15 @@
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {

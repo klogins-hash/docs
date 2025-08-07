@@ -1,0 +1,29 @@
+{
+  "name": "mintlify-weaviate-sync",
+  "version": "1.0.0",
+  "description": "Real-time sync between Weaviate database and Mintlify documentation",
+  "type": "module",
+  "main": "scripts/weaviate-sync.js",
+  "scripts": {
+    "sync": "node scripts/weaviate-sync.js sync",
+    "sync:watch": "node scripts/weaviate-sync.js watch",
+    "sync:watch:fast": "node scripts/weaviate-sync.js watch 1",
+    "dev": "mintlify dev",
+    "build": "mintlify build"
+  },
+  "dependencies": {
+    "weaviate-ts-client": "^1.5.0"
+  },
+  "devDependencies": {
+    "mintlify": "^4.0.0"
+  },
+  "keywords": [
+    "weaviate",
+    "mintlify",
+    "documentation",
+    "sync",
+    "real-time"
+  ],
+  "author": "",
+  "license": "MIT"
+}
