@@ -21,6 +21,7 @@ const WEAVIATE_CONFIG = {
 const SUPPORTED_FORMATS = {
   // Text formats
   '.md': 'markdown',
+  '.mdx': 'markdown',
   '.txt': 'text',
   '.rtf': 'text',
   '.html': 'html',
